@@ -10,7 +10,7 @@ class LoggerInterceptor extends Interceptor {
     this.requestHeader = true,
     this.requestBody = false,
     this.responseHeader = true,
-    this.responseBody = false,
+    this.responseBody = true,
     this.error = true,
   });
 

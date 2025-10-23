@@ -8,7 +8,7 @@ class WebtoonListApi {
   WebtoonListApi({required Dio dio}) : _dio = dio;
 
   Future<Response> getWebtoonList() async {
-    return await _dio.get('$baseUrl/$endPointToday');
+    return await _dio.get('$baseUrl$endPointToday');
   }
 }
 

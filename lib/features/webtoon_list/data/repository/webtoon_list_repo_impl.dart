@@ -12,7 +12,9 @@ class WebtoonListRepoImpl extends AbstractWebtoonListRepository {
   WebtoonListRepoImpl(this._webtoonListApi);
 
   @override
-  Future<Result<List<WebtoonListModel>>> getWebtoonList() async {
+  Future<Result<List<WebtoonListModel>>> getWebtoonList(
+    bool fetchFromRemote,
+  ) async {
     try {
       final response = await _webtoonListApi.getWebtoonList();
 

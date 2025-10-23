@@ -5,7 +5,7 @@ import 'package:webtoon/features/webtoon_list/data/repository/webtoon_list_repo_
 import 'package:webtoon/features/webtoon_list/domain/model/webtoon_list_model.dart';
 
 abstract class AbstractWebtoonListRepository {
-  Future<Result<List<WebtoonListModel>>> getWebtoonList();
+  Future<Result<List<WebtoonListModel>>> getWebtoonList(bool fetchFromRemote);
 }
 
 final webtoonListRepositoryProvider = Provider<AbstractWebtoonListRepository>((
