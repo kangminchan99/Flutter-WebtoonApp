@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webtoon/core/layout/default_layout.dart';
 import 'package:webtoon/features/webtoon_list/presentation/bloc/webtoon_list_action.dart';
 import 'package:webtoon/features/webtoon_list/presentation/view_model/webtoon_list_page_vm.dart';
+import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_list_empty.dart';
+import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_listview.dart';
 
 class WebtoonListScreen extends ConsumerWidget {
   const WebtoonListScreen({super.key});
@@ -14,24 +16,16 @@ class WebtoonListScreen extends ConsumerWidget {
     return DefaultLayout(
       appBarTitle: '오늘의 웹툰',
       child: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () async =>
-              vmNoti.onAction(const WebtoonListScreenAction.refresh()),
-          child: ListView.builder(
-            itemCount: vm.webtoonList.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(vm.webtoonList[index].title),
-                    subtitle: Text(vm.webtoonList[index].thumb),
-                  ),
-                  Divider(color: Colors.black),
-                ],
-              );
-            },
-          ),
-        ),
+        child: vm.isLoading
+            ? Center(child: CircularProgressIndicator.adaptive())
+            : vm.webtoonList.isEmpty
+            ? WebtoonListEmpty()
+            : WebtoonListview(
+                onRefresh: () async {
+                  vmNoti.onAction(const WebtoonListScreenAction.refresh());
+                },
+                webtoonList: vm.webtoonList,
+              ),
       ),
     );
   }
