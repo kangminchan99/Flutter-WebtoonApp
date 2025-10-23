@@ -4,7 +4,7 @@ import 'package:webtoon/core/layout/default_layout.dart';
 import 'package:webtoon/features/webtoon_list/presentation/bloc/webtoon_list_action.dart';
 import 'package:webtoon/features/webtoon_list/presentation/view_model/webtoon_list_page_vm.dart';
 import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_list_empty.dart';
-import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_listview.dart';
+import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_card_grid.dart';
 
 class WebtoonListScreen extends ConsumerWidget {
   const WebtoonListScreen({super.key});
@@ -20,7 +20,7 @@ class WebtoonListScreen extends ConsumerWidget {
             ? Center(child: CircularProgressIndicator.adaptive())
             : vm.webtoonList.isEmpty
             ? WebtoonListEmpty()
-            : WebtoonListview(
+            : WebtoonCardGrid(
                 onRefresh: () async {
                   vmNoti.onAction(const WebtoonListScreenAction.refresh());
                 },
