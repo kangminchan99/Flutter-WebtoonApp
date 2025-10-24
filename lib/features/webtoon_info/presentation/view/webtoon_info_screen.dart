@@ -23,6 +23,7 @@ class WebtoonInfoScreen extends ConsumerWidget {
             ? WebtoonInfoEmpty()
             : Column(
                 children: [
+                  SizedBox(height: 12),
                   _headerImg(webtoonInfo: vm.webtoonInfo!, id: id),
                   // Hero(
                   //   tag: ObjectKey(id),
@@ -39,18 +40,21 @@ Widget _headerImg({
   required WebtoonInfoModel? webtoonInfo,
   required String id,
 }) {
-  return webtoonInfo!.thumb.isNotEmpty
-      ? Hero(
-          tag: id,
-          child: CachedNetworkImage(
-            imageUrl: webtoonInfo.thumb,
-            httpHeaders: {
-              'Referer': 'https://comic.naver.com',
-              'User-Agent': 'Mozilla/5.0',
-            },
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-        )
-      : Container();
+  return Hero(
+    tag: id,
+    child: SizedBox(
+      height: 300,
+      width: double.infinity,
+      child: CachedNetworkImage(
+        imageUrl: webtoonInfo!.thumb.isNotEmpty
+            ? webtoonInfo.thumb
+            : 'https://avatars.githubusercontent.com/u/114412280?v=4',
+        httpHeaders: {
+          'Referer': 'https://comic.naver.com',
+          'User-Agent': 'Mozilla/5.0',
+        },
+        fit: BoxFit.cover,
+      ),
+    ),
+  );
 }
