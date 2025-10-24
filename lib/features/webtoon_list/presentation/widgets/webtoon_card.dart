@@ -34,16 +34,19 @@ class WebtoonCard extends StatelessWidget {
             if (webtoonList.thumb.isNotEmpty)
               AspectRatio(
                 aspectRatio: 1 / 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
-                  child: CachedNetworkImage(
-                    imageUrl: webtoonList.thumb,
-                    httpHeaders: {
-                      'Referer': 'https://comic.naver.com',
-                      'User-Agent': 'Mozilla/5.0',
-                    },
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                child: Hero(
+                  tag: webtoonList.id,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.0),
+                    child: CachedNetworkImage(
+                      imageUrl: webtoonList.thumb,
+                      httpHeaders: {
+                        'Referer': 'https://comic.naver.com',
+                        'User-Agent': 'Mozilla/5.0',
+                      },
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),

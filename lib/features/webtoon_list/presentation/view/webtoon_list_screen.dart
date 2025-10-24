@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:webtoon/core/layout/default_layout.dart';
 import 'package:webtoon/features/webtoon_list/presentation/bloc/webtoon_list_action.dart';
-import 'package:webtoon/features/webtoon_list/presentation/view_model/webtoon_list_page_vm.dart';
+import 'package:webtoon/features/webtoon_list/presentation/view_model/webtoon_list_vm.dart';
 import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_list_empty.dart';
 import 'package:webtoon/features/webtoon_list/presentation/widgets/webtoon_card_grid.dart';
 
 class WebtoonListScreen extends ConsumerWidget {
+  static String get routeName => 'webtoon_list';
   const WebtoonListScreen({super.key});
 
   @override

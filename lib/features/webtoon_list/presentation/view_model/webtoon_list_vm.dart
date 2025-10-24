@@ -4,7 +4,7 @@ import 'package:webtoon/features/webtoon_list/domain/repository/abstract_webtoon
 import 'package:webtoon/features/webtoon_list/presentation/bloc/webtoon_list_action.dart';
 import 'package:webtoon/features/webtoon_list/presentation/bloc/webtoon_list_state.dart';
 
-class WebtoonListScreenViewModel extends Notifier<WebtoonListState> {
+class WebtoonListVm extends Notifier<WebtoonListState> {
   late final AbstractWebtoonListRepository _repository;
 
   @override
@@ -38,6 +38,4 @@ class WebtoonListScreenViewModel extends Notifier<WebtoonListState> {
 }
 
 final webtoonListPageVMProvider =
-    NotifierProvider<WebtoonListScreenViewModel, WebtoonListState>(
-      () => WebtoonListScreenViewModel(),
-    );
+    NotifierProvider<WebtoonListVm, WebtoonListState>(() => WebtoonListVm());
