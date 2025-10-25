@@ -15,21 +15,20 @@ class WebtoonInfoScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final vm = ref.watch(webtoonInfoVMProvider(id));
     return DefaultLayout(
-      appBarTitle: '웹툰 상세',
+      appBarTitle: '웹툰 정보',
       child: SafeArea(
         child: vm.isLoading
             ? Center(child: CircularProgressIndicator.adaptive())
             : vm.webtoonInfo == null
             ? WebtoonInfoEmpty()
-            : Column(
-                children: [
-                  SizedBox(height: 12),
-                  _headerImg(webtoonInfo: vm.webtoonInfo!, id: id),
-                  // Hero(
-                  //   tag: ObjectKey(id),
-                  //   child: CachedNetworkImage(imageUrl: vm.webtoonInfo.thumb),
-                  // ),
-                ],
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(height: 12),
+                    _headerImg(webtoonInfo: vm.webtoonInfo!, id: id),
+                    _bodyEpisodeInfo(webtoonInfo: vm.webtoonInfo!),
+                  ],
+                ),
               ),
       ),
     );
@@ -43,7 +42,7 @@ Widget _headerImg({
   return Hero(
     tag: id,
     child: SizedBox(
-      height: 300,
+      height: 450,
       width: double.infinity,
       child: CachedNetworkImage(
         imageUrl: webtoonInfo!.thumb.isNotEmpty
@@ -55,6 +54,31 @@ Widget _headerImg({
         },
         fit: BoxFit.cover,
       ),
+    ),
+  );
+}
+
+Widget _bodyEpisodeInfo({required WebtoonInfoModel? webtoonInfo}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          webtoonInfo!.title,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          '${webtoonInfo.genre} · ${webtoonInfo.age}',
+          style: TextStyle(color: Colors.grey[700]),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          webtoonInfo.about,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+        ),
+      ],
     ),
   );
 }
