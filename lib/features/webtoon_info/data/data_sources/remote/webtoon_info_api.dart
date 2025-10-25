@@ -12,6 +12,10 @@ class WebtoonInfoApi {
     final response = await _dio.get('$baseUrl$id');
     return WebtoonInfoModel.fromJson(response.data);
   }
+
+  Future<Response> getWebtoonEpisodes(String id) async {
+    return await _dio.get('$baseUrl$id/episodes');
+  }
 }
 
 final webtoonInfoApiProvider = Provider<WebtoonInfoApi>((ref) {

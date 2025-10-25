@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:webtoon/core/helper/helper.dart';
 import 'package:webtoon/features/webtoon_list/domain/model/webtoon_list_model.dart';
 
 class WebtoonCard extends StatelessWidget {
@@ -40,10 +41,7 @@ class WebtoonCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16.0),
                     child: CachedNetworkImage(
                       imageUrl: webtoonList.thumb,
-                      httpHeaders: {
-                        'Referer': 'https://comic.naver.com',
-                        'User-Agent': 'Mozilla/5.0',
-                      },
+                      httpHeaders: Helper.httpImgHeaders,
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),

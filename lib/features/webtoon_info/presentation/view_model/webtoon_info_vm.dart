@@ -12,7 +12,9 @@ class WebtoonInfoVm extends FamilyNotifier<WebtoonInfoState, String> {
 
     final initial = const WebtoonInfoState();
 
-    Future.microtask(() => getWebtoonInfo(id));
+    Future.microtask(() {
+      return Future.wait([getWebtoonInfo(id), getWebtoonEpisodes(id)]);
+    });
 
     return initial;
   }
@@ -26,6 +28,19 @@ class WebtoonInfoVm extends FamilyNotifier<WebtoonInfoState, String> {
       },
       failure: (error) {
         state = state.copyWith(webtoonInfo: null, isLoading: false);
+      },
+    );
+  }
+
+  Future<void> getWebtoonEpisodes(String id) async {
+    state = state.copyWith(isLoading: true);
+    final result = await _repository.getWebtoonEpisodes(id);
+    result.when(
+      success: (data) {
+        state = state.copyWith(episodes: data, isLoading: false);
+      },
+      failure: (error) {
+        state = state.copyWith(episodes: [], isLoading: false);
       },
     );
   }

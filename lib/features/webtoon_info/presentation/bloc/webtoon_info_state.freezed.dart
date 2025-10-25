@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WebtoonInfoState {
 
- bool get isLoading; WebtoonInfoModel? get webtoonInfo;
+ bool get isLoading; WebtoonInfoModel? get webtoonInfo; List<WebtoonEpisodeModel> get episodes;
 /// Create a copy of WebtoonInfoState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $WebtoonInfoStateCopyWith<WebtoonInfoState> get copyWith => _$WebtoonInfoStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebtoonInfoState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.webtoonInfo, webtoonInfo) || other.webtoonInfo == webtoonInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebtoonInfoState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.webtoonInfo, webtoonInfo) || other.webtoonInfo == webtoonInfo)&&const DeepCollectionEquality().equals(other.episodes, episodes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,webtoonInfo);
+int get hashCode => Object.hash(runtimeType,isLoading,webtoonInfo,const DeepCollectionEquality().hash(episodes));
 
 @override
 String toString() {
-  return 'WebtoonInfoState(isLoading: $isLoading, webtoonInfo: $webtoonInfo)';
+  return 'WebtoonInfoState(isLoading: $isLoading, webtoonInfo: $webtoonInfo, episodes: $episodes)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $WebtoonInfoStateCopyWith<$Res>  {
   factory $WebtoonInfoStateCopyWith(WebtoonInfoState value, $Res Function(WebtoonInfoState) _then) = _$WebtoonInfoStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, WebtoonInfoModel? webtoonInfo
+ bool isLoading, WebtoonInfoModel? webtoonInfo, List<WebtoonEpisodeModel> episodes
 });
 
 
@@ -65,11 +65,12 @@ class _$WebtoonInfoStateCopyWithImpl<$Res>
 
 /// Create a copy of WebtoonInfoState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? webtoonInfo = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? webtoonInfo = freezed,Object? episodes = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,webtoonInfo: freezed == webtoonInfo ? _self.webtoonInfo : webtoonInfo // ignore: cast_nullable_to_non_nullable
-as WebtoonInfoModel?,
+as WebtoonInfoModel?,episodes: null == episodes ? _self.episodes : episodes // ignore: cast_nullable_to_non_nullable
+as List<WebtoonEpisodeModel>,
   ));
 }
 /// Create a copy of WebtoonInfoState
@@ -166,10 +167,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  WebtoonInfoModel? webtoonInfo)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  WebtoonInfoModel? webtoonInfo,  List<WebtoonEpisodeModel> episodes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WebtoonInfoState() when $default != null:
-return $default(_that.isLoading,_that.webtoonInfo);case _:
+return $default(_that.isLoading,_that.webtoonInfo,_that.episodes);case _:
   return orElse();
 
 }
@@ -187,10 +188,10 @@ return $default(_that.isLoading,_that.webtoonInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  WebtoonInfoModel? webtoonInfo)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  WebtoonInfoModel? webtoonInfo,  List<WebtoonEpisodeModel> episodes)  $default,) {final _that = this;
 switch (_that) {
 case _WebtoonInfoState():
-return $default(_that.isLoading,_that.webtoonInfo);case _:
+return $default(_that.isLoading,_that.webtoonInfo,_that.episodes);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -207,10 +208,10 @@ return $default(_that.isLoading,_that.webtoonInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  WebtoonInfoModel? webtoonInfo)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  WebtoonInfoModel? webtoonInfo,  List<WebtoonEpisodeModel> episodes)?  $default,) {final _that = this;
 switch (_that) {
 case _WebtoonInfoState() when $default != null:
-return $default(_that.isLoading,_that.webtoonInfo);case _:
+return $default(_that.isLoading,_that.webtoonInfo,_that.episodes);case _:
   return null;
 
 }
@@ -222,11 +223,18 @@ return $default(_that.isLoading,_that.webtoonInfo);case _:
 @JsonSerializable()
 
 class _WebtoonInfoState implements WebtoonInfoState {
-  const _WebtoonInfoState({this.isLoading = false, this.webtoonInfo});
+  const _WebtoonInfoState({this.isLoading = false, this.webtoonInfo, final  List<WebtoonEpisodeModel> episodes = const []}): _episodes = episodes;
   factory _WebtoonInfoState.fromJson(Map<String, dynamic> json) => _$WebtoonInfoStateFromJson(json);
 
 @override@JsonKey() final  bool isLoading;
 @override final  WebtoonInfoModel? webtoonInfo;
+ final  List<WebtoonEpisodeModel> _episodes;
+@override@JsonKey() List<WebtoonEpisodeModel> get episodes {
+  if (_episodes is EqualUnmodifiableListView) return _episodes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_episodes);
+}
+
 
 /// Create a copy of WebtoonInfoState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +249,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebtoonInfoState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.webtoonInfo, webtoonInfo) || other.webtoonInfo == webtoonInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebtoonInfoState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.webtoonInfo, webtoonInfo) || other.webtoonInfo == webtoonInfo)&&const DeepCollectionEquality().equals(other._episodes, _episodes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,webtoonInfo);
+int get hashCode => Object.hash(runtimeType,isLoading,webtoonInfo,const DeepCollectionEquality().hash(_episodes));
 
 @override
 String toString() {
-  return 'WebtoonInfoState(isLoading: $isLoading, webtoonInfo: $webtoonInfo)';
+  return 'WebtoonInfoState(isLoading: $isLoading, webtoonInfo: $webtoonInfo, episodes: $episodes)';
 }
 
 
@@ -261,7 +269,7 @@ abstract mixin class _$WebtoonInfoStateCopyWith<$Res> implements $WebtoonInfoSta
   factory _$WebtoonInfoStateCopyWith(_WebtoonInfoState value, $Res Function(_WebtoonInfoState) _then) = __$WebtoonInfoStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, WebtoonInfoModel? webtoonInfo
+ bool isLoading, WebtoonInfoModel? webtoonInfo, List<WebtoonEpisodeModel> episodes
 });
 
 
@@ -278,11 +286,12 @@ class __$WebtoonInfoStateCopyWithImpl<$Res>
 
 /// Create a copy of WebtoonInfoState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? webtoonInfo = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? webtoonInfo = freezed,Object? episodes = null,}) {
   return _then(_WebtoonInfoState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,webtoonInfo: freezed == webtoonInfo ? _self.webtoonInfo : webtoonInfo // ignore: cast_nullable_to_non_nullable
-as WebtoonInfoModel?,
+as WebtoonInfoModel?,episodes: null == episodes ? _self._episodes : episodes // ignore: cast_nullable_to_non_nullable
+as List<WebtoonEpisodeModel>,
   ));
 }
 

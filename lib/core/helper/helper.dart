@@ -17,4 +17,9 @@ class Helper {
     // 헤더가 없으므로 {}로 초기화
     return {}..removeWhere((key, value) => value == null);
   }
+
+  static const Map<String, String> httpImgHeaders = {
+    'Referer': 'https://comic.naver.com',
+    'User-Agent': 'Mozilla/5.0',
+  };
 }
