@@ -14,7 +14,7 @@ class WebtoonInfoApi {
   }
 
   Future<Response> getWebtoonEpisodes(String id) async {
-    return await _dio.get('$baseUrl$id/episodes');
+    return await _dio.get('$baseUrl$id/$endPointEpisode');
   }
 }
 

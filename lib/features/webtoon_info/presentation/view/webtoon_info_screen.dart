@@ -32,7 +32,7 @@ class WebtoonInfoScreen extends ConsumerWidget {
                     const SizedBox(height: 12),
                     _headerImg(webtoonInfo: vm.webtoonInfo!, id: id),
                     _bodyWebtoonInfo(webtoonInfo: vm.webtoonInfo!),
-                    _bottomEpisodes(webtoonEpisodes: vm.episodes),
+                    _bottomEpisodes(webtoonEpisodes: vm.episodes, id: id),
                   ],
                 ),
               ),
@@ -65,6 +65,9 @@ Widget _bodyWebtoonInfo({required WebtoonInfoModel? webtoonInfo}) {
   return WebtoonInfo(webtoonInfo: webtoonInfo!);
 }
 
-Widget _bottomEpisodes({required List<WebtoonEpisodeModel> webtoonEpisodes}) {
-  return WebtoonEpisodeList(webtoonEpisodes: webtoonEpisodes);
+Widget _bottomEpisodes({
+  required List<WebtoonEpisodeModel> webtoonEpisodes,
+  required String id,
+}) {
+  return WebtoonEpisodeList(webtoonEpisodes: webtoonEpisodes, id: id);
 }

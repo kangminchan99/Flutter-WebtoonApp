@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webtoon/features/webtoon_info/presentation/view/webtoon_info_screen.dart';
 import 'package:webtoon/features/webtoon_list/presentation/view/webtoon_list_screen.dart';
+import 'package:webtoon/features/webtoon_play/presentation/view/webtoon_play_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
@@ -17,6 +18,16 @@ final routerProvider = Provider((ref) {
             name: WebtoonInfoScreen.routeName,
             builder: (context, state) =>
                 WebtoonInfoScreen(id: state.pathParameters['id']!),
+            routes: [
+              GoRoute(
+                path: 'webtoon_play/:episodeId',
+                name: WebtoonPlayScreen.routeName,
+                builder: (context, state) => WebtoonPlayScreen(
+                  id: state.pathParameters['id']!,
+                  episodeId: state.pathParameters['episodeId']!,
+                ),
+              ),
+            ],
           ),
         ],
       ),
